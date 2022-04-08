@@ -6,10 +6,10 @@ import { map } from 'rxjs/operators'
   providedIn: 'root',
 })
 export class ApiService {
+  public productsUrl: string = 'http://localhost:4300/products'
   constructor(private http: HttpClient) {}
-
   getProducts() {
-    return this.http.get<any>('https://fakestoreapi.com/products').pipe(
+    return this.http.get<any>(this.productsUrl).pipe(
       map((res: any) => {
         return res
       }),

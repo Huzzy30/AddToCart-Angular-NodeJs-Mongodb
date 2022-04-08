@@ -6,15 +6,13 @@ import { HeaderComponent } from './components/header/header.component'
 import { CartComponent } from './components/cart/cart.component'
 import { ProductsComponent } from './components/products/products.component'
 import { AppRoutingModule } from './app-routing.module'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FilterPipe } from './shared/filter.pipe'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     CartComponent,
     ProductsComponent,
-    FilterPipe,
   ],
   imports: [
     BrowserModule,
