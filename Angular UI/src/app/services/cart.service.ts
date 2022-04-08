@@ -51,9 +51,10 @@ export class CartService {
     return grandTotal
   }
   removeCartItem(product: any) {
-    console.log(product)
     this.cartItemList.map((a: any, index: any) => {
-      this.cartItemList.splice(index, 1)
+      if (a.id === product.id) {
+        this.cartItemList.splice(index, 1)
+      }
     })
     this.productList.next(this.cartItemList)
   }
