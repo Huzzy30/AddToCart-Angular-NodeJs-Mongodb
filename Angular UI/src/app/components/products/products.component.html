@@ -27,9 +27,36 @@
           <strong>Price:</strong>
           ${{ item.price }}
         </p>
-        <button class="btn-primary" (click)="addtocart(item)">
-          Add to Card
+        <button
+          *ngIf="item.quantity === 0; else updateQuantity"
+          (click)="addtocart(item)"
+          class="btn-primary"
+        >
+          <strong>Add to Card</strong>
         </button>
+        <ng-template #updateQuantity>
+          <div class="row no-gutters">
+            <div class="col-2">
+              <button
+                (click)="removefromcart(item)"
+                class="btn btn-danger btn-block"
+              >
+                <strong>-</strong>
+              </button>
+            </div>
+            <div class="col text-center">
+              <strong>{{ item.quantity }} item</strong>
+            </div>
+            <div class="col-2">
+              <button
+                (click)="addtocart(item)"
+                class="btn btn-primary btn-block"
+              >
+                <strong>+</strong>
+              </button>
+            </div>
+          </div>
+        </ng-template>
       </div>
     </ng-container>
   </div>

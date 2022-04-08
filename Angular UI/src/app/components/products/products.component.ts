@@ -9,7 +9,7 @@ import { CartService } from 'src/app/services/cart.service'
 })
 export class ProductsComponent implements OnInit {
   public productList: any
-  public filterCategory: any
+  public totalItem: number = 0
   searchKey: string = ''
   constructor(private api: ApiService, private cartService: CartService) {}
 
@@ -17,22 +17,15 @@ export class ProductsComponent implements OnInit {
     this.api.getProducts().subscribe((res) => {
       this.productList = res
       this.productList.forEach((a: any) => {
-        Object.assign(a, { quantity: 1, total: a.price })
+        Object.assign(a, { quantity: 0, total: 0 })
       })
     })
-
-    this.cartService.search.subscribe((val: any) => {
-      this.searchKey = val
-    })
   }
+
   addtocart(item: any) {
     this.cartService.addtoCart(item)
   }
-  filter(category: string) {
-    this.filterCategory = this.productList.filter((a: any) => {
-      if (a.category == category || category == '') {
-        return a
-      }
-    })
+  removefromcart(item: any) {
+    this.cartService.removefromCart(item)
   }
 }

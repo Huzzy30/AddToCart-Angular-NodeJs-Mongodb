@@ -18,10 +18,23 @@ export class CartService {
     this.productList.next(product)
   }
   addtoCart(product: any) {
+    product.quantity++
+    product.total = product.price * product.quantity
+    if (!this.cartItemList.includes(product)) {
+      this.cartItemList.push(product)
+      this.productList.next(this.cartItemList)
+    }
+    this.getTotalPrice()
+  }
+
+  removefromCart(product: any) {
+    product.quantity--
+    product.total = product.total - product.price
     this.cartItemList.push(product)
     this.productList.next(this.cartItemList)
     this.getTotalPrice()
   }
+
   getTotalPrice(): number {
     let grandTotal = 0
     this.cartItemList.map((a: any) => {
