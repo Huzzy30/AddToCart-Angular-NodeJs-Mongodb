@@ -12,7 +12,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.getProducts().subscribe((res) => {
-      this.totalItem = res.length
+      console.log(res.length)
+      this.totalItem = res.filter(
+        (p: any) => p.quantity !== 0 && p.quantity !== -1,
+      ).length
     })
   }
 }

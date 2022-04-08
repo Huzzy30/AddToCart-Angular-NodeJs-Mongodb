@@ -28,7 +28,10 @@
           ${{ item.price }}
         </p>
         <button
-          *ngIf="item.quantity === 0; else updateQuantity"
+          *ngIf="
+            item.quantity === -1 || item.quantity === 0;
+            else updateQuantity
+          "
           (click)="addtocart(item)"
           class="btn-primary"
         >

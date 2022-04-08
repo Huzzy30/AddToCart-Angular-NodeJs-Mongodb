@@ -13,7 +13,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.getProducts().subscribe((res) => {
-      this.products = res
+      this.products = res.filter((p: any) => p.quantity !== 0)
       this.grandTotal = this.cartService.getTotalPrice()
     })
   }
